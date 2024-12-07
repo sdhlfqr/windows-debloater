@@ -4,3 +4,16 @@ description: Prepares the system for configuration.
 privilege: TrustedInstaller
 actions:
   - !writeStatus: { status: 'Preparing the system for configuration.' }
+
+  # Updating hosts file to block unwanted content and telemetry.
+  - !cmd:
+    command: 'copy /y "configs\hosts" "%WINDIR%\System32\drivers\etc\hosts"'
+    exeDir: true
+    wait: true
+    weight: 8
+
+  # Clear DNS cache to apply the updated hosts file.
+  - !cmd:
+    command: 'ipconfig /flushdns'
+    wait: true
+    weight: 8
