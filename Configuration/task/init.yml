@@ -17,3 +17,11 @@ actions:
     command: 'ipconfig /flushdns'
     wait: true
     weight: 8
+  
+  # Optimise PowerShell by compiling assemblies with ngen.
+  - !run:
+    exe: 'PowerShell'
+    args: '-NoP -ExecutionPolicy Bypass -File scripts\turbo-powershell.ps1'
+    exeDir: true
+    wait: true
+    weight: 2
