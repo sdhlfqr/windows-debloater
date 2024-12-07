@@ -1,0 +1,6 @@
+---
+title: init
+description: Prepares the system for configuration.
+privilege: TrustedInstaller
+actions:
+  - !writeStatus: { status: 'Preparing the system for configuration.' }

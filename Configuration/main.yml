@@ -1,0 +1,6 @@
+---
+title: ame
+description: Amelioration script
+privilege: Admin
+actions:
+  - !task: { path: 'task\init.yml' }
