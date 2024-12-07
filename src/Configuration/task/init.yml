@@ -17,6 +17,18 @@ actions:
     command: 'ipconfig /flushdns'
     wait: true
     weight: 8
+
+  # Switch power plan to ultimate performance.
+  - !cmd:
+    command: 'powercfg /S 4155e7b4-1f5f-4be9-838a-245cf4f5267c'
+    wait: true
+    weight: 2
+
+  # Disable monitor timeout on AC.
+  - !cmd:
+    command: 'powercfg /change monitor-timeout-ac 0'
+    wait: true
+    weight: 2
   
   # Optimise PowerShell by compiling assemblies with ngen.
   - !run:
