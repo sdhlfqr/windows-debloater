@@ -1,0 +1,30 @@
+name: Publish Release
+
+on:
+  push:
+    tags:
+      - '*'
+
+env:
+  FILENAME: 'playbook-${{ github.ref_name }}.apbx'
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Archive
+        run: |
+          7z a -pmalte -mhe=on ${{ env.FILENAME }} ./src/*
+          
+      - name: Release
+        uses: svenstaro/upload-release-action@v2
+        with:
+          file: ${{ env.FILENAME }}
+          overwrite: true
